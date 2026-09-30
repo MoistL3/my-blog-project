@@ -1,0 +1,9 @@
+import Link from "next/link";
+import { requireAdmin } from "@/lib/admin";
+import { getArticles, getQuestions } from "@/lib/data";
+
+export default async function AdminHome() {
+  const session = await requireAdmin();
+  const [articles, questions] = await Promise.all([getArticles(true), getQuestions(false)]);
+  return <div className="admin-page"><div className="admin-page-heading"><div><p className="eyebrow">owner workspace</p><h1>Good to see you, {session.user.name?.split(" ")[0] ?? "owner"}.</h1><p>Here&apos;s what&apos;s happening with your corner of the internet.</p></div><Link className="admin-button primary" href="/admin/articles">new article ↗</Link></div><div className="admin-stat-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}><Link href="/admin/articles"><span>total articles</span><strong>{articles.length}</strong><small>{articles.filter((article) => article.status === "PUBLISHED").length} published · {articles.filter((article) => article.status === "DRAFT").length} drafts</small></Link><Link href="/admin/questions"><span>questions</span><strong>{questions.filter((question) => question.status === "NEW").length}</strong><small>awaiting a reply</small></Link></div><section className="admin-panel"><div className="admin-panel-heading"><h2>Quick start</h2><span>YOUR SITE, YOUR STORY</span></div><div className="quick-links"><Link href="/admin/settings"><span>01</span><div><strong>Make it yours</strong><small>Update your profile, bio, and contact details</small></div>↗</Link><Link href="/admin/articles"><span>02</span><div><strong>Write something</strong><small>Draft, preview, and publish an article</small></div>↗</Link><Link href="/admin/questions"><span>03</span><div><strong>Join the conversation</strong><small>Review and answer anonymous questions</small></div>↗</Link></div></section></div>;
+}

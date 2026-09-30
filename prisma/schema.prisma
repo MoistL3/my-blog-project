@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Set DATABASE_URL to Neon's pooled (-pooler) endpoint for application queries.
+  url       = env("DATABASE_URL")
+  // Keep migrations and other direct-only operations on Neon's direct endpoint.
+  directUrl = env("DIRECT_URL")
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum QuestionStatus {
+  NEW
+  ANSWERED
+  HIDDEN
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  order       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  articles    Article[]
+}
+
+model Article {
+  id          String        @id @default(cuid())
+  title       String
+  slug        String        @unique
+  excerpt     String
+  content     String        @db.Text
+  coverImage  String?
+  status      ArticleStatus @default(DRAFT)
+  categoryId  String
+  category    Category      @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  tags        String[]
+  readingTime Int           @default(1)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model SiteSettings {
+  id          String    @id @default("site")
+  ownerName   String    @default("Alex Morgan")
+  headline    String    @default("Building thoughtful software for the web.")
+  bio         String    @default("") @db.Text
+  email       String?
+  github      String?
+  linkedin    String?
+  x           String?
+  avatarUrl   String?
+  extraLinks  Json?
+  updatedAt   DateTime  @updatedAt
+}
+
+model Question {
+  id         String         @id @default(cuid())
+  body       String         @db.VarChar(1000)
+  status     QuestionStatus @default(NEW)
+  answer     String?        @db.Text
+  isPublic   Boolean        @default(false)
+  createdAt  DateTime       @default(now())
+  answeredAt DateTime?
+}
+
+model QuestionRateLimit {
+  tokenHash  String   @id
+  windowStart DateTime
+  count       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}

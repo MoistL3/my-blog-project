@@ -1,0 +1,9 @@
+import { UploadField } from "@/components/upload-field";
+import { requireAdmin } from "@/lib/admin";
+import { getSettings } from "@/lib/data";
+import { saveSettings } from "@/app/actions";
+
+export default async function SettingsPage({ searchParams }: { searchParams: Promise<{ error?: string; saved?: string }> }) {
+  await requireAdmin(); const [settings, params] = await Promise.all([getSettings(), searchParams]);
+  return <div className="admin-page"><div className="admin-page-heading"><div><p className="eyebrow">identity</p><h1>Site settings</h1><p>Set the details visitors see across your portfolio.</p></div></div>{params.error && <p className="admin-alert">{params.error}</p>}{params.saved && <p className="admin-success">Changes saved.</p>}<form className="admin-panel admin-form" action={saveSettings}><div className="admin-panel-heading"><h2>Profile &amp; contact</h2><span>PUBLIC PROFILE</span></div><div className="form-grid"><label>Owner name<input name="ownerName" defaultValue={settings.ownerName} required /></label><label>Headline<input name="headline" defaultValue={settings.headline} required /></label><label className="full-field">Bio<textarea name="bio" defaultValue={settings.bio} rows={6} /></label><UploadField name="avatarUrl" kind="avatar" label="Profile photo" initialUrl={settings.avatarUrl ?? ""} /><label>Email<input name="email" type="email" defaultValue={settings.email ?? ""} /></label><label>GitHub URL<input name="github" type="url" defaultValue={settings.github ?? ""} /></label><label>LinkedIn URL<input name="linkedin" type="url" defaultValue={settings.linkedin ?? ""} /></label><label>X / Twitter URL<input name="x" type="url" defaultValue={settings.x ?? ""} /></label></div><div className="form-actions"><span>Changes publish immediately after saving.</span><button className="admin-button primary" type="submit">save settings ↗</button></div></form></div>;
+}

@@ -1,0 +1,171 @@
+/* Dark color treatment for the existing admin layout and components. */
+.admin-layout,
+.login-wrap {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+.login-card {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.login-card :is(h1, .eyebrow) {
+  color: var(--text) !important;
+}
+
+.login-card .eyebrow {
+  color: var(--accent) !important;
+}
+
+.login-card > p:not(.eyebrow),
+.login-card > a {
+  color: var(--muted) !important;
+}
+
+.login-card .config-alert {
+  background: #321d20 !important;
+  border-color: #63383d !important;
+  color: #fecaca !important;
+}
+
+.login-card .admin-button.primary,
+.login-card .admin-button.primary:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #21180a !important;
+}
+
+.admin-layout :is(.admin-sidebar, .admin-panel, .admin-stat-grid > a, .quick-links > a, .managed-item, .managed-category, .question-item, .editor-preview, .login-card) {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.admin-layout .admin-sidebar {
+  background: var(--surface-2) !important;
+}
+
+.admin-layout :is(.admin-brand, .admin-page-heading h1, .admin-panel-heading h2, .admin-stat-grid strong, .quick-links strong, .managed-item strong, .question-body, .login-card h1, .admin-form label, .category-edit-form label) {
+  color: var(--text) !important;
+}
+
+.admin-layout :is(.admin-nav-label, .admin-page-heading p:not(.eyebrow), .admin-panel-heading > span, .admin-stat-grid span, .admin-stat-grid small, .quick-links small, .managed-item small, .admin-sidebar nav a, .admin-sidebar nav a span, .admin-sidebar-bottom a, .admin-sidebar-bottom button, .question-item-head time) {
+  color: var(--muted) !important;
+}
+
+.admin-layout :is(.admin-page-heading .eyebrow, .admin-badge, .admin-sidebar nav a:hover, .admin-sidebar nav a:hover span, .admin-sidebar-bottom a:hover, .admin-sidebar-bottom button:hover) {
+  color: var(--accent) !important;
+}
+
+.admin-layout :is(.admin-sidebar, .admin-sidebar-bottom, .admin-panel, .managed-item, .managed-category, .question-item, .login-card) {
+  border-color: var(--border) !important;
+}
+
+.admin-layout :is(input:not([type="checkbox"]):not([type="hidden"]), textarea, select, .input) {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.admin-layout :is(.markdown-editor textarea, .markdown-editor .editor-preview, .editor-tabs, .upload-field) {
+  background: #18181b !important;
+  color: var(--text) !important;
+  border-color: #27272a !important;
+}
+
+.admin-layout .editor-tabs {
+  border-bottom: 1px solid #27272a !important;
+}
+
+.admin-layout .editor-tabs button {
+  background: #27272a !important;
+  color: #a1a1aa !important;
+  border-color: #3f3f46 !important;
+}
+
+.admin-layout .editor-tabs button.selected {
+  background: #18181b !important;
+  color: var(--accent) !important;
+  border-color: #3f3f46 !important;
+}
+
+.admin-layout .upload-field {
+  border: 1px solid #27272a !important;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.admin-layout .upload-field > label {
+  color: var(--text) !important;
+}
+
+.admin-layout .upload-field small {
+  color: var(--muted) !important;
+}
+
+.admin-layout input[type="file"]::file-selector-button {
+  padding: 6px 10px;
+  border: 1px solid #3f3f46;
+  border-radius: 3px;
+  background: #27272a;
+  color: #f4f4f5;
+  cursor: pointer;
+}
+
+.admin-layout :is(.admin-form, .admin-panel, .managed-item, .question-item, .category-edit-form, .upload-field, .markdown-editor, .editor-tabs) {
+  border-color: #27272a !important;
+}
+
+.admin-layout :is(.admin-form label, .category-edit-form label, .checkbox-label, .form-actions, .editor-tabs button) {
+  color: #d4d4d8 !important;
+}
+
+.admin-layout :is(input, textarea, select, button, a):focus-visible,
+.login-card :is(input, textarea, select, button, a):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.admin-layout input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.admin-layout :is(input, textarea, select)::placeholder {
+  color: var(--muted) !important;
+}
+
+.admin-layout :is(.admin-button, .editor-tabs button, .question-moderation button, .delete-form button) {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.admin-layout :is(.admin-button.primary, .admin-button.primary:hover) {
+  background: var(--accent) !important;
+  color: #21180a !important;
+  border-color: var(--accent) !important;
+}
+
+.admin-layout :is(.status-label, .admin-badge, .count-badge) {
+  background: var(--accent-soft) !important;
+  border-color: var(--border) !important;
+  color: var(--accent) !important;
+}
+
+.admin-layout :is(.admin-alert, .config-alert) {
+  background: #321d20 !important;
+  border-color: #63383d !important;
+  color: #fecaca !important;
+}
+
+.admin-layout .admin-success {
+  background: #183024 !important;
+  border-color: #315943 !important;
+  color: #bbf7d0 !important;
+}
+
+.admin-layout :is(.delete-form button, .question-moderation button) {
+  color: #fca5a5 !important;
+}
