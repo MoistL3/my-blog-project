@@ -1,4 +1,4 @@
-# Developer portfolio CMS
+# Developer Blog CMS
 
 A dark, terminal-inspired portfolio and blog with a single-owner admin workspace. The public pages can be previewed without a database using starter content. Mutations are intentionally disabled until a database and owner credentials are configured.
 
